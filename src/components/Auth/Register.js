@@ -41,7 +41,7 @@ export default function Register({ onLogin, onSuccess }) {
 
   return (
     <div className="auth-container">
-      <div className="auth-form">
+      <div className="auth-form" style={{ padding: '60px', maxWidth: '520px' }}>
         <div className="auth-header">
           <div 
             className="auth-logo"
@@ -50,25 +50,25 @@ export default function Register({ onLogin, onSuccess }) {
               backgroundSize: 'contain',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
-              height: '160px',
+              height: '180px',
               width: '100%',
-              marginBottom: '20px',
+              marginBottom: '30px',
               position: 'relative'
             }}
           />
           <div 
             style={{
-              height: '2px',
+              height: '3px',
               background: 'linear-gradient(90deg, transparent, rgba(36,149,255,0.3), rgba(30,127,224,0.3), transparent)',
-              margin: '20px 0',
+              margin: '25px 0',
               borderRadius: '1px'
             }}
           />
           <h2 style={{ 
             textAlign: 'center', 
-            margin: '0 0 30px 0', 
+            margin: '0 0 40px 0', 
             color: '#0f172a',
-            fontSize: '28px',
+            fontSize: '32px',
             fontWeight: '800'
           }}>
             Crear Cuenta
@@ -76,8 +76,8 @@ export default function Register({ onLogin, onSuccess }) {
         </div>
 
         <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Nombre completo</label>
+        <div className="form-group" style={{ marginBottom: '24px' }}>
+          <label htmlFor="name" style={{ fontSize: '16px', fontWeight: '600', marginBottom: '10px' }}>Nombre completo</label>
           <input
             type="text"
             id="name"
@@ -86,11 +86,12 @@ export default function Register({ onLogin, onSuccess }) {
             placeholder="Tu nombre completo"
             required
             className="auth-input"
+            style={{ padding: '16px 20px', fontSize: '16px', height: '56px' }}
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
+        <div className="form-group" style={{ marginBottom: '24px' }}>
+          <label htmlFor="email" style={{ fontSize: '16px', fontWeight: '600', marginBottom: '10px' }}>Email</label>
           <input
             type="email"
             id="email"
@@ -99,11 +100,12 @@ export default function Register({ onLogin, onSuccess }) {
             placeholder="tu@email.com"
             required
             className="auth-input"
+            style={{ padding: '16px 20px', fontSize: '16px', height: '56px' }}
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="password">Contraseña</label>
+        <div className="form-group" style={{ marginBottom: '24px' }}>
+          <label htmlFor="password" style={{ fontSize: '16px', fontWeight: '600', marginBottom: '10px' }}>Contraseña</label>
           <input
             type="password"
             id="password"
@@ -112,11 +114,12 @@ export default function Register({ onLogin, onSuccess }) {
             placeholder="••••••••"
             required
             className="auth-input"
+            style={{ padding: '16px 20px', fontSize: '16px', height: '56px' }}
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="confirmPassword">Confirmar contraseña</label>
+        <div className="form-group" style={{ marginBottom: '24px' }}>
+          <label htmlFor="confirmPassword" style={{ fontSize: '16px', fontWeight: '600', marginBottom: '10px' }}>Confirmar contraseña</label>
           <input
             type="password"
             id="confirmPassword"
@@ -125,20 +128,22 @@ export default function Register({ onLogin, onSuccess }) {
             placeholder="••••••••"
             required
             className="auth-input"
+            style={{ padding: '16px 20px', fontSize: '16px', height: '56px' }}
           />
         </div>
 
         {error && (
-          <div className="error-message">
+          <div className="error-message" style={{ fontSize: '16px', padding: '16px 20px', marginBottom: '20px' }}>
             {error}
           </div>
         )}
 
-        <div className="auth-buttons">
+        <div className="auth-buttons" style={{ marginTop: '25px' }}>
           <button
             type="submit"
             disabled={loading}
             className="btn btn-login"
+            style={{ padding: '16px 24px', fontSize: '16px', fontWeight: '600' }}
           >
             {loading ? 'Creando cuenta...' : 'Crear Cuenta'}
           </button>
@@ -146,6 +151,7 @@ export default function Register({ onLogin, onSuccess }) {
             type="button"
             onClick={onLogin}
             className="btn btn-register"
+            style={{ padding: '16px 24px', fontSize: '16px', fontWeight: '600' }}
           >
             Ya tengo cuenta
           </button>
