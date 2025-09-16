@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='App.css') }}">
+</head>
+<body>
+    <div class="auth-container">
+      <div class="auth-form" style="padding: 60px; max-width: 520px;">
+        <div class="auth-header">
+          <div class="auth-logo" style="height: 180px; width: 100%; margin-bottom: 30px; position: relative; background: url('{{ url_for('static', filename='fondo.png') }}') center/contain no-repeat;"></div>
+          <div style="font-size: 32px; font-weight: bold; margin-bottom: 12px;">Registro</div>
+        </div>
+        {% if error %}<div style="color: #ef4444; font-size: 16px; padding: 12px;">{{ error }}</div>{% endif %}
+        <form method="post">
+          <label>Nombre</label>
+          <input class="input" type="text" name="name" value="{{ name|default('') }}" required />
+          <label>Email</label>
+          <input class="input" type="email" name="email" value="{{ email|default('') }}" required />
+          <label>Contraseña</label>
+          <input class="input" type="password" name="password" required />
+          <label>Confirmar Contraseña</label>
+          <input class="input" type="password" name="confirmPassword" required />
+          <button type="submit" class="btn-cta" style="margin-top: 16px;">Registrarse</button>
+        </form>
+        <div style="margin-top: 16px;">
+          <a href="{{ url_for('login') }}">¿Ya tienes cuenta? Inicia sesión</a>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

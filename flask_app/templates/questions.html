@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Preguntas Generadas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='App.css') }}">
+</head>
+<body>
+    <div class="container">
+      <div class="card-hero light" style="margin-bottom: 16px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div class="icon-circle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="5" width="16" height="14" rx="3" stroke="#1e90ff" stroke-width="1.5" fill="#eaf2ff"/>
+              <path d="M7 9h10M7 12h7M7 15h10" stroke="#1e90ff" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h2 class="section-title" style="color: #0f172a; margin: 0;">Preguntas Generadas</h2>
+        </div>
+        <p class="desc" style="margin-top: 8px;">Revise el contenido antes de guardar.</p>
+      </div>
+      {% if questions|length == 0 %}
+        <div class="card-hero light" style="text-align: center;">
+          <div style="display: flex; justify-content: center; margin-bottom: 12px;">
+            <div class="icon-circle">
+              <!-- ListIcon SVG -->
+            </div>
+          </div>
+          <div class="title-lg">Aún no hay preguntas</div>
+          <p class="desc">Genere preguntas desde “Nuevo Examen” para comenzar.</p>
+          <a href="{{ url_for('exam_form') }}" class="btn-cta">Crear preguntas</a>
+        </div>
+      {% endif %}
+      <div class="grid" style="gap: 16px;">
+        {% for q in questions %}
+          <div class="card-hero light">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong style="color: #0f172a;">Pregunta {{ loop.index }}</strong>
+            </div>
+            {% if q.imagenUrl %}
+              <div style="margin: 12px 0;">
+                <img src="{{ q.imagenUrl }}" alt="{{ q.descripcion_logica or 'Imagen de la pregunta' }}" style="max-width: 100%; border-radius: 8px;" />
+              </div>
+            {% endif %}
+            <textarea class="textarea" readonly>{{ q.pregunta }}</textarea>
+            {% if q.opciones %}
+              <div class="grid" style="gap: 8px;">
+                {% for opt in q.opciones %}
+                  <input class="input" value="{{ opt }}" readonly />
+                {% endfor %}
+              </div>
+            {% endif %}
+            <label class="grid" style="gap: 8px; margin-top: 12px;">
+              <span>Respuesta correcta</span>
+              <input class="input" value="{{ q.respuesta_correcta or '' }}" readonly />
+            </label>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="card-hero light" style="margin-top: 16px;">
+        <div class="title-lg">Resumen</div>
+        <p class="desc" style="margin-top: 4px;">
+          {{ questions|length }} preguntas
+        </p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="{{ url_for('exam_form') }}" class="btn btn-ghost">Volver</a>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='App.css') }}">
+</head>
+<body>
+    <div class="auth-container">
+      <div class="auth-form" style="padding: 60px; max-width: 520px;">
+        <div class="auth-header">
+          <div class="auth-logo" style="height: 180px; width: 100%; margin-bottom: 30px; position: relative; background: url('{{ url_for('static', filename='fondo.png') }}') center/contain no-repeat;"></div>
+          <div style="font-size: 32px; font-weight: bold; margin-bottom: 12px;">Iniciar Sesión</div>
+        </div>
+        {% if error %}<div style="color: #ef4444; font-size: 16px; padding: 12px;">{{ error }}</div>{% endif %}
+        <form method="post">
+          <label>Email</label>
+          <input class="input" type="email" name="email" value="{{ email|default('') }}" required />
+          <label>Contraseña</label>
+          <input class="input" type="password" name="password" required />
+          <label style="display: flex; align-items: center; gap: 8px;">
+            <input type="checkbox" name="stayConnected" {% if stayConnected %}checked{% endif %} /> Mantener sesión iniciada
+          </label>
+          <button type="submit" class="btn-cta" style="margin-top: 16px;">Entrar</button>
+        </form>
+        <div style="margin-top: 16px;">
+          <a href="{{ url_for('register') }}">¿No tienes cuenta? Regístrate</a>
+        </div>
+        <div style="margin-top: 8px;">
+          <a href="#" onclick="document.getElementById('forgot-form').submit(); return false;">¿Olvidaste tu contraseña?</a>
+          <form id="forgot-form" method="post" style="display:none;">
+            <input type="hidden" name="forgot" value="1" />
+            <input type="hidden" name="email" value="{{ email|default('') }}" />
+          </form>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
